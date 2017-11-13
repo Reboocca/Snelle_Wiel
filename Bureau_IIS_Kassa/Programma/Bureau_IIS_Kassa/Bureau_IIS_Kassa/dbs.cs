@@ -30,7 +30,8 @@ namespace Bureau_IIS_Kassa
 
             catch (MySqlException) //Foutafhandeling
             {
-                MessageBox.Show("Kan geen verbinding maken met de database", "Foutmelding");
+                MessageBox.Show("Kan geen verbinding maken met de database", "Error");
+                throw;
             }
         }
 
@@ -43,33 +44,44 @@ namespace Bureau_IIS_Kassa
             cmd.CommandText = "Select * from users where Username=@user";
             cmd.Parameters.AddWithValue("@user", user);         //Parameter with the username
                                                                 //cmd.Parameters.AddWithValue("@pass", sHash);        // Parameter with the password
-            cmd.Connection = connect;
-            MySqlDataReader reader = cmd.ExecuteReader();
-
+            
             try
             {
-                tbl.Load(reader);
+                cmd.Connection = connect;
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                try
+                {
+                    tbl.Load(reader);
+                }
+                catch
+                {
+                    MessageBox.Show("Er is iets misgegaan met het laden van de gegevens", "Error");
+                }
+                finally
+                {
+                    connect.Close();
+                }
+
+
+                bool validPassword = BCrypt.Net.BCrypt.Verify(password, tbl.Rows[0]["password"].ToString());
+
+                if (validPassword == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Kan geen verbinding maken met de server", "Error");
+                    return false;
+                }
             }
             catch
             {
-                MessageBox.Show("Er is iets misgegaan met het laden van de gegevens");
-            }
-            finally
-            {
-                connect.Close();
-            }
 
-
-            bool validPassword = BCrypt.Net.BCrypt.Verify(password, tbl.Rows[0]["password"].ToString());
-
-            if (validPassword == true)
-            {
-                return true;
+                throw;
             }
-            else
-            {
-                return false;
-            }
+            
 
         }
 

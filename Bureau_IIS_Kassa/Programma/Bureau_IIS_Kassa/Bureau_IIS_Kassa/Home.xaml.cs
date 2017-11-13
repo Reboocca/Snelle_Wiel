@@ -39,14 +39,14 @@ namespace Bureau_IIS_Kassa
 
         private void LoadMedewerker()
         {
-            lbUser.Content = db.getInfoGebruiker("1");
+            lbUser.Content = db.getInfoGebruiker("3");
         }
 
         private void btLogout_Click(object sender, RoutedEventArgs e)
         {
             //Crasht momenteel door snelle inlog, maar werkt wanner we de snelle inlog eraf halen
-            MainWindow f = new MainWindow();
-            f.Show();
+            //MainWindow f = new MainWindow();
+            //f.Show();
 
             this.Close();
         }
