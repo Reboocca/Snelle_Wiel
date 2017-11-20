@@ -5,8 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SNWL_Planningsysteem"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+         Title="Inloggen op het planningsysteem" Height="600" Width="400" Icon="img/logo.png" Background="#4f4d4f">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="logo" Grid.Column="1" Grid.Row="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="img/logo.png" Stretch="Uniform"/>
+            </Grid.Background>
+        </Grid>
+
+        <Grid x:Name="content" Grid.Column="1" Grid.Row="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="tbUsername" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Height="35" FontFamily="Calibri Light" FontSize="20"/>
+            <PasswordBox x:Name="pbPassword" Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" Height="35" FontFamily="Calibri Light" FontSize="20"/>
+
+        </Grid>
+        <Button x:Name="btLogin" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Content="Login" Height="44" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="24" Foreground="White" Click="btLogin_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#6FD1D7"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#8bdadf"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Window>

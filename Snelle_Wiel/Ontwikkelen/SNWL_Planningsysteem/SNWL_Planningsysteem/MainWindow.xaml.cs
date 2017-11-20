@@ -20,9 +20,25 @@ namespace SNWL_Planningsysteem
     /// </summary>
     public partial class MainWindow : Window
     {
+        dbs db = new dbs();
         public MainWindow()
         {
             InitializeComponent();
+
+            //snel inloggen
+            db.try_login("p.meeresman", "123", this);
+        }
+
+        private void btLogin_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbUsername.Text == "" || pbPassword.Password == "")
+            {
+                MessageBox.Show("Zorg ervoor dat u beide invoervelden hebt gegevuld.", "Foutmelding");
+            }
+            else
+            {
+                db.try_login(tbUsername.Text, pbPassword.Password, this);
+            }
         }
     }
 }
