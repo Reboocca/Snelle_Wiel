@@ -112,38 +112,6 @@ namespace SNWL_Planningsysteem
 
         }
 
-        public string getInfoGebruiker(string id)
-        {
-            DataTable retValue = new DataTable();
-            db_connection();
-
-            using (MySqlCommand cmd = new MySqlCommand("Select * from kassamedewerkers where ID='" + id + "'"))
-            {
-                cmd.Connection = connect;
-                MySqlDataReader reader = cmd.ExecuteReader();
-                retValue.Load(reader);
-                connect.Close();
-            }
-
-
-            //Check of er een tussenvoegsel is
-            string VolledigeNaam = "";
-            string tsvgl = Convert.ToString(retValue.Rows[0]["Tussenvoegsel"]);
-            string vrnm = Convert.ToString(retValue.Rows[0]["Voornaam"]);
-            string achtnm = Convert.ToString(retValue.Rows[0]["Achternaam"]);
-
-            if (tsvgl == null)
-            {
-                VolledigeNaam = vrnm + " " + achtnm;
-            }
-            else if (tsvgl != null)
-            {
-                VolledigeNaam = vrnm + " " + tsvgl + " " + achtnm;
-            }
-
-            return VolledigeNaam;
-        }
-
         public void newUser(string user, string password)
         {
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);

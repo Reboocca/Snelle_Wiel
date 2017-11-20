@@ -26,7 +26,7 @@ namespace SNWL_Planningsysteem
             InitializeComponent();
 
             //snel inloggen
-            db.try_login("p.meeresman", "123", this);
+            //db.try_login("p.meeresman", "123", this);
         }
 
         private void btLogin_Click(object sender, RoutedEventArgs e)
@@ -37,7 +37,8 @@ namespace SNWL_Planningsysteem
             }
             else
             {
-                db.try_login(tbUsername.Text, pbPassword.Password, this);
+                //db.newUser(tbUsername.Text, pbPassword.Password);
+               db.try_login(tbUsername.Text, pbPassword.Password, this);
             }
         }
     }

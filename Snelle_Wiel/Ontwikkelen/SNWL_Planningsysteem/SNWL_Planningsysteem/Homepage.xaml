@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SNWL_Planningsysteem"
         mc:Ignorable="d"
-        Title="Planningsysteem Snelle Wiel" Height="1008" Width="1601" Icon="img/logo.png" Background="#FFE6E6E6">
+        Title="Planningsysteem Snelle Wiel" Height="680" Width="1300" Icon="img/logo.png" Background="#FFE6E6E6">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -17,7 +17,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
-            <RowDefinition Height="7*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
@@ -48,19 +48,108 @@
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="5*"/>
+                <RowDefinition Height="6*"/>
                 <RowDefinition Height="45*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             
         </Grid>
         <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Background="#FF6FD1D7">
-            <Label Content="Datum" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="26"/>
+            <Label Content="Datum" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="16"/>
         </Grid>
-        <Grid Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" Background="#433e40
-">
-            <Label Content="Datum" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="26"/>
+        
+        <!-- content -->
+        <Grid Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" Background="#433e40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="2" Content="Kies een datum:" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="16"/>
+            <ComboBox x:Name="cbDatum" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+        </Grid>
+        <Grid Grid.Column="3" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+
+            <DataGrid x:Name="dgTabel1" Grid.Column="1" Grid.Row="1" GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" FontFamily="Calibri Light" FontSize="16" BorderBrush="{x:Null}" Foreground="#FF1D1B1A" Background="White" ColumnWidth="SizeToCells" MinColumnWidth="175" CanUserResizeColumns="False" CanUserResizeRows="False">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#6fd1d7" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="Content" Value="Chauffeur"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+
+            <DataGrid x:Name="dgTabe2" Grid.Column="3" Grid.Row="1" GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" FontFamily="Calibri Light" FontSize="16" BorderBrush="{x:Null}" Foreground="#FF1D1B1A" Background="White" ColumnWidth="SizeToCells" MinColumnWidth="175" CanUserResizeColumns="False" CanUserResizeRows="False">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#6fd1d7" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="Content" Value="Chauffeur"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+            <DataGrid x:Name="dgTabel3" Grid.Column="5" Grid.Row="1" GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" FontFamily="Calibri Light" FontSize="16" BorderBrush="{x:Null}" Foreground="#FF1D1B1A" Background="White" ColumnWidth="SizeToCells" MinColumnWidth="175" CanUserResizeColumns="False" CanUserResizeRows="False">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#6fd1d7" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="Content" Value="Chauffeur"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
         </Grid>
 
+        <!-- buttons -->
+        <!--<Grid>
+            <Button x:Name="btLogin" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" VerticalAlignment="Top" Content="Login" Height="44" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btLogin_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#ced46a"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#d2d878"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>-->
+        
     </Grid>
 </Window>
