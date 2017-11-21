@@ -100,9 +100,13 @@ namespace SNWL_Planningsysteem
 
             if (r)      //Als de gegevens bekend zijn in de database & kloppen
             {
-                Homepage f = new Homepage();
+                Admin f = new Admin();
                 f.Show();
                 loginform.Close();
+
+                //Homepage f = new Homepage();
+                //f.Show();
+                //loginform.Close();
             }
 
             else            //Als de gegevens niet kloppen

@@ -1,0 +1,186 @@
+﻿<Window x:Class="SNWL_Planningsysteem.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SNWL_Planningsysteem"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" Title="Planningsysteem Snelle Wiel" Height="680" Width="1300" Icon="img/logo.png" Background="#FFE6E6E6">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <!-- top bar -->
+        <Grid x:Name="Topbar" Grid.Column="0" Grid.ColumnSpan="15" Grid.Row="0" Background="#4f4d4f">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="imgLogo" Grid.Row="1" Grid.Column="0" Source="img/logo.png"/>
+            <Label x:Name="lbCompany"  Grid.Row="1" Grid.Column="1" Content="Snelle Wiel" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontFamily="Calibri Light" FontSize="16"/>
+        </Grid>
+        <Label x:Name="lbTitel"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Content="Planningsysteem applicatie" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="26"/>
+
+        <!-- zoekfunctie -->
+        <Grid Grid.Column="0" Grid.ColumnSpan="9" Grid.Row="1" Background="#433e40"/>
+        <TextBox x:Name="tbZoek" Tag="Voer het personeelsnummer of de naam in en druk op 'zoek'" Grid.Column="5" Grid.Row="3" VerticalAlignment="Top" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}" Margin="0,16,0,0"/>
+        <ComboBox x:Name="cbZoek" Grid.Column="3" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14">
+            <ComboBoxItem Content="Personeelsnummer" HorizontalAlignment="Left" Height="25" HorizontalContentAlignment="Stretch" IsSelected="True" />
+            <ComboBoxItem Content="Naam van medewerker" HorizontalAlignment="Left" Height="25" HorizontalContentAlignment="Stretch"/>
+        </ComboBox>
+        <Button x:Name="btZoek" Grid.Column="7" Grid.Row="3" VerticalAlignment="Bottom" Content="Zoeken" Height="30" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#ced46a"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#d2d878"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+
+        <!-- Knoppen -->
+        <Button x:Name="btNieuw" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Content="Nieuw account toevoegen" Height="30" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btNieuw_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#ced46a"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#d2d878"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btBewerken" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Content="Bewerk het geselecteerde account" Height="30" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#ced46a"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#d2d878"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btVerwijderen" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Content="Nieuw account toevoegen" Height="30" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#ced46a"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#d2d878"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btTerug" Grid.Column="1" Grid.Row="11" VerticalAlignment="Center" Content="Terug naar het vorige scherm" Height="30" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#ced46a"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#d2d878"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- Tabel -->
+        <DataGrid x:Name="dgMedewerkers" Grid.Column="3" Grid.ColumnSpan="5" Grid.Row="5" Grid.RowSpan="7" GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" FontFamily="Calibri Light" FontSize="14" BorderBrush="{x:Null}" Foreground="#FF1D1B1A" Background="White" ColumnWidth="SizeToCells" MinColumnWidth="120" CanUserResizeColumns="True" CanUserResizeRows="False">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#6fd1d7" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="Padding" Value="10"/>
+                </Style>
+
+            </DataGrid.Resources>
+        </DataGrid>
+
+
+
+    </Grid>
+</Window>
