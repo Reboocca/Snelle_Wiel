@@ -43,10 +43,10 @@
                 <ColumnDefinition Width="100*"/>
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="1" Grid.Row="1" Content="Gebruikersnaam:" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="18"/>
-            <TextBox x:Name="tbUsername" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="30" FontFamily="Calibri Light" FontSize="16"/>
+            <Label Grid.Column="1" Grid.Row="1" Content="Gebruikersnaam:" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="18" />
+            <TextBox x:Name="tbUsername" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="30" FontFamily="Calibri Light" FontSize="16" KeyDown="tbUsername_KeyDown"/>
             <Label Grid.Column="1" Grid.Row="4" Content="Wachtwoord:" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="18"/>
-            <PasswordBox x:Name="pbPassword" Grid.Column="1" Grid.Row="5" VerticalAlignment="Top" Height="30" FontFamily="Calibri Light" FontSize="16"/>
+            <PasswordBox x:Name="pbPassword" Grid.Column="1" Grid.Row="5" VerticalAlignment="Top" Height="30" FontFamily="Calibri Light" FontSize="16" KeyDown="pbPassword_KeyDown"/>
 
         </Grid>
         <Button x:Name="btLogin" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" VerticalAlignment="Top" Content="Login" Height="44" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btLogin_Click">
@@ -64,7 +64,7 @@
                     </Setter>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#d2d878"/>
+                            <Setter Property="Background" Value="#d7dc87"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>

@@ -60,7 +60,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AddAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -72,6 +80,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AddAccount.xaml.cs">
+      <DependentUpon>AddAccount.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
     </Compile>
@@ -80,6 +91,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="dbs.cs" />
+    <Compile Include="DeleteAccount.xaml.cs">
+      <DependentUpon>DeleteAccount.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Homepage.xaml.cs">
       <DependentUpon>Homepage.xaml</DependentUpon>
     </Compile>

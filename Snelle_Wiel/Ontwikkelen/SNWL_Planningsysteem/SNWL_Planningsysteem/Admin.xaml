@@ -31,7 +31,7 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
         <!-- top bar -->
@@ -53,12 +53,12 @@
 
         <!-- zoekfunctie -->
         <Grid Grid.Column="0" Grid.ColumnSpan="9" Grid.Row="1" Background="#433e40"/>
-        <TextBox x:Name="tbZoek" Tag="Voer het personeelsnummer of de naam in en druk op 'zoek'" Grid.Column="5" Grid.Row="3" VerticalAlignment="Top" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}" Margin="0,16,0,0"/>
-        <ComboBox x:Name="cbZoek" Grid.Column="3" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14">
+        <TextBox x:Name="tbZoek" Tag="Voer het personeelsnummer of de naam in en druk op 'zoek'" Grid.Column="5" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <ComboBox x:Name="cbZoek" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14">
             <ComboBoxItem Content="Personeelsnummer" HorizontalAlignment="Left" Height="25" HorizontalContentAlignment="Stretch" IsSelected="True" />
             <ComboBoxItem Content="Naam van medewerker" HorizontalAlignment="Left" Height="25" HorizontalContentAlignment="Stretch"/>
         </ComboBox>
-        <Button x:Name="btZoek" Grid.Column="7" Grid.Row="3" VerticalAlignment="Bottom" Content="Zoeken" Height="30" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
+        <Button x:Name="btZoek" Grid.Column="7" Grid.Row="3" VerticalAlignment="Center" Content="Zoeken" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#ced46a"/>
@@ -73,7 +73,7 @@
                     </Setter>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#d2d878"/>
+                            <Setter Property="Background" Value="#d7dc87"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -82,7 +82,49 @@
 
 
         <!-- Knoppen -->
-        <Button x:Name="btNieuw" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Content="Nieuw account toevoegen" Height="30" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btNieuw_Click">
+        <Button x:Name="btNieuw" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Content="Nieuw account toevoegen" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btNieuw_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#ced46a"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#d7dc87"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btBewerken" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Content="Bewerk account" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btBewerken_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#ced46a"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#d7dc87"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btVerwijderen" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Content="Account verwijderen" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btVerwijderen_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#ced46a"/>
@@ -103,7 +145,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="btBewerken" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Content="Bewerk het geselecteerde account" Height="30" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
+        <Button x:Name="btTerug" Grid.Column="1" Grid.Row="11" VerticalAlignment="Center" Content="Terug naar het vorige scherm" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btTerug_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#ced46a"/>
@@ -118,49 +160,7 @@
                     </Setter>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#d2d878"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="btVerwijderen" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Content="Nieuw account toevoegen" Height="30" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#ced46a"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#d2d878"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button x:Name="btTerug" Grid.Column="1" Grid.Row="11" VerticalAlignment="Center" Content="Terug naar het vorige scherm" Height="30" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#ced46a"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#d2d878"/>
+                            <Setter Property="Background" Value="#d7dc87"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -168,7 +168,7 @@
         </Button>
 
         <!-- Tabel -->
-        <DataGrid x:Name="dgMedewerkers" Grid.Column="3" Grid.ColumnSpan="5" Grid.Row="5" Grid.RowSpan="7" GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" FontFamily="Calibri Light" FontSize="14" BorderBrush="{x:Null}" Foreground="#FF1D1B1A" Background="White" ColumnWidth="SizeToCells" MinColumnWidth="120" CanUserResizeColumns="True" CanUserResizeRows="False">
+        <DataGrid x:Name="dgMedewerkers" SelectionMode="Single" Grid.Column="3" Grid.ColumnSpan="5" Grid.Row="5" Grid.RowSpan="7" GridLinesVisibility="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" FontFamily="Calibri Light" FontSize="14" BorderBrush="{x:Null}" Foreground="#FF1D1B1A" Background="White" ColumnWidth="SizeToCells" MinColumnWidth="120" CanUserResizeColumns="True" CanUserResizeRows="False">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="#6fd1d7" />

@@ -29,7 +29,14 @@ namespace SNWL_Planningsysteem
             db.try_login("p.meeresman", "123", this);
         }
 
+
+
         private void btLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Login();
+        }
+
+        private void Login()
         {
             if (tbUsername.Text == "" || pbPassword.Password == "")
             {
@@ -38,7 +45,23 @@ namespace SNWL_Planningsysteem
             else
             {
                 //db.newUser(tbUsername.Text, pbPassword.Password);
-               db.try_login(tbUsername.Text, pbPassword.Password, this);
+                db.try_login(tbUsername.Text, pbPassword.Password, this);
+            }
+        }
+
+        private void tbUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Login();
+            }
+        }
+
+        private void pbPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Login();
             }
         }
     }

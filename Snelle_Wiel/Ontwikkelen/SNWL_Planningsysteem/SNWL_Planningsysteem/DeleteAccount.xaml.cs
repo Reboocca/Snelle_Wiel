@@ -15,20 +15,26 @@ using System.Windows.Shapes;
 namespace SNWL_Planningsysteem
 {
     /// <summary>
-    /// Interaction logic for Homepage.xaml
+    /// Interaction logic for DeleteAccount.xaml
     /// </summary>
-    public partial class Homepage : Window
+    public partial class DeleteAccount : Window
     {
-        dbs db = new dbs();
-        public Homepage()
+        public DeleteAccount()
         {
             InitializeComponent();
         }
 
-        private void btBeheren_Click(object sender, RoutedEventArgs e)
+        private void btAnnuleren_Click(object sender, RoutedEventArgs e)
         {
-            Admin f = new Admin();
-            f.Show();
+            //sluit deze window af
+            this.Close();
+        }
+
+        private void btAccepteren_Click(object sender, RoutedEventArgs e)
+        {
+            //verwijder functie toevoegen
+
+            //sluit deze window af
             this.Close();
         }
     }

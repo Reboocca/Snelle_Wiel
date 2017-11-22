@@ -1,0 +1,137 @@
+﻿<Window x:Class="SNWL_Planningsysteem.AddAccount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SNWL_Planningsysteem"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" Title="Planningsysteem Snelle Wiel" Height="580" Width="845.5" Icon="img/logo.png" Background="#FFE6E6E6">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <!-- top bar -->
+        <Grid x:Name="Topbar" Grid.Column="0" Grid.ColumnSpan="15" Grid.Row="0" Background="#4f4d4f">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="imgLogo" Grid.Row="1" Grid.Column="0" Source="img/logo.png"/>
+            <Label x:Name="lbCompany"  Grid.Row="1" Grid.Column="1" Content="Snelle Wiel" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontFamily="Calibri Light" FontSize="16"/>
+        </Grid>
+        <Label x:Name="lbTitel"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="11" Content="Planningsysteem applicatie" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="26"/>
+
+        <!-- Topbar -->
+        <Grid Grid.Column="0" Grid.ColumnSpan="11" Grid.Row="1" Background="#433e40"/>
+
+        <!-- Formulier -->
+        <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Text="Kies een rol voor de nieuwe gebruiker en vul de onderstaande velden in." VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow" FontFamily="Calibri Light" FontSize="14"/>
+        <ComboBox x:Name="cbRol" SelectedValuePath="Content" Grid.Column="7" Grid.ColumnSpan="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" SelectionChanged="cbRol_SelectionChanged">
+            <ComboBoxItem Content="Planner" HorizontalAlignment="Left" Height="25" HorizontalContentAlignment="Stretch" IsSelected="True" />
+            <ComboBoxItem Content="Chauffeur" HorizontalAlignment="Left" Height="25" HorizontalContentAlignment="Stretch"/>
+        </ComboBox>
+        
+        <TextBox x:Name="tbPersNr" Grid.Column="1" Grid.Row="5" Tag="Personeelsnummer" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbUsername" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="5" Tag="Gebruikersnaam" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbWachtwoord" Grid.Column="7" Grid.ColumnSpan="3" Grid.Row="5" Tag="Wachtwoord" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+
+        <TextBox x:Name="tbVoornaam" Grid.Column="1" Grid.Row="7" Tag="Voornaam" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbTussenvoegsel" Grid.Column="3" Grid.Row="7" Tag="Tussenvoegsel" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbAchternaam" Grid.Column="5" Grid.Row="7" Tag="Achternaam" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        
+        <TextBox x:Name="tbWoonplaats" Grid.Column="5" Grid.Row="9" Tag="Woonplaats" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbAdres" Grid.Column="1" Grid.Row="9" Tag="Straatnaam" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbNummer" Grid.Column="3" Grid.Row="9" Tag="Huisnummer" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        
+        <StackPanel x:Name="spRijbewijs" Grid.Column="7" Grid.ColumnSpan="3" Grid.Row="7" Grid.RowSpan="8">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=cbRol, Path=SelectedValue}" Value="Chauffeur"> 
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            
+            <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Content="Geef aan welke rijbewijzen de chauffeur heeft:" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="A, A1 en A2" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="AM" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="B" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="BE en B+" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="C" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="CE" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="C1" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="C1E" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="D" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="DE" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="D1" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="D1E" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+            <CheckBox Content="T" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
+        </StackPanel>
+
+
+        <!-- Knoppen -->
+        <Button x:Name="btOpslaan" Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="13" VerticalAlignment="Center" Content="Account opslaan" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btOpslaan_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#ced46a"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#d7dc87"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+
+
+
+    </Grid>
+</Window>

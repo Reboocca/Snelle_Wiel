@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,7 +54,41 @@ namespace SNWL_Planningsysteem
 
         private void btNieuw_Click(object sender, RoutedEventArgs e)
         {
+            AddAccount f = new AddAccount();
+            f.Show();
+        }
 
+        private void btTerug_Click(object sender, RoutedEventArgs e)
+        {
+            Homepage f = new Homepage();
+            f.Show();
+            this.Close();
+        }
+
+        private void btBewerken_Click(object sender, RoutedEventArgs e)
+        {
+            //
+            if (dgMedewerkers.SelectedCells.Count > 0)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Selecteer eerst een medeweker voordat u verder kunt", "Foutmelding");
+            }
+        }
+
+        private void btVerwijderen_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgMedewerkers.SelectedCells.Count > 0)
+            {
+                DeleteAccount f = new DeleteAccount();
+                f.Show();
+            }
+            else
+            {
+                MessageBox.Show("Selecteer eerst een medeweker voordat u verder kunt", "Foutmelding");
+            }
         }
     }
 }

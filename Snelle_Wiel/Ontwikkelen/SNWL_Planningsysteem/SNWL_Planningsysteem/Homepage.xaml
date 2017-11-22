@@ -9,7 +9,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="30*"/>
             <ColumnDefinition Width="1*"/>
@@ -19,7 +19,7 @@
             <RowDefinition Height="8*"/>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="50*"/>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
 
         <!-- top bar -->
@@ -52,11 +52,38 @@
                 <RowDefinition Height="45*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            
+
+            <TreeView x:Name="tvDatums" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="16">
+                <TreeViewItem Header="28 november">
+                    <TreeViewItem Header="Pakbon 1432" FontSize="14"></TreeViewItem>
+                    <TreeViewItem Header="Pakbon 1532" FontSize="14"></TreeViewItem>
+                    <TreeViewItem Header="Pakbon 1333" FontSize="14"></TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="29 november">
+                    <TreeViewItem Header="Pakbon 1437" FontSize="14"></TreeViewItem>
+                    <TreeViewItem Header="Pakbon 1753" FontSize="14"></TreeViewItem>
+                    <TreeViewItem Header="Pakbon 1293" FontSize="14"></TreeViewItem>
+                    <TreeViewItem Header="Pakbon 1124" FontSize="14"></TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="30 november">
+                    <TreeViewItem Header="Pakbon 1001" FontSize="14"></TreeViewItem>
+                    <TreeViewItem Header="Pakbon 1022" FontSize="14"></TreeViewItem>
+                    <TreeViewItem Header="Pakbon 1233" FontSize="14"></TreeViewItem>
+                    <TreeViewItem Header="Pakbon 1334" FontSize="14"></TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="1 december">
+                    <TreeViewItem Header="Pakbon 1562" FontSize="14"></TreeViewItem>
+                    <TreeViewItem Header="Pakbon 1283" FontSize="14"></TreeViewItem>
+                    <TreeViewItem Header="Pakbon 1933" FontSize="14"></TreeViewItem>
+                    <TreeViewItem Header="Pakbon 1304" FontSize="14"></TreeViewItem>
+                </TreeViewItem>
+            </TreeView>
+
         </Grid>
         <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Background="#FF6FD1D7">
             <Label Content="Datum" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="16"/>
         </Grid>
+        
         
         <!-- content -->
         <Grid Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" Background="#433e40">
@@ -127,8 +154,16 @@
         </Grid>
 
         <!-- buttons -->
-        <!--<Grid>
-            <Button x:Name="btLogin" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" VerticalAlignment="Top" Content="Login" Height="44" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btLogin_Click">
+        <Grid Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="5*"/>                
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btGenerate" Grid.Column="1" VerticalAlignment="Top" Content="Planning genereren" Height="44" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Background" Value="#ced46a"/>
@@ -143,13 +178,35 @@
                         </Setter>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#d2d878"/>
+                                <Setter Property="Background" Value="#d7dc87"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
             </Button>
-        </Grid>-->
-        
+            <Button x:Name="btBeheren" Grid.Column="3" VerticalAlignment="Top" Content="Accounts beheren" Height="44" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btBeheren_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#ced46a"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#d7dc87"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+       
+
     </Grid>
 </Window>
