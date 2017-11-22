@@ -26,7 +26,7 @@ namespace SNWL_Planningsysteem
             InitializeComponent();
 
             //snel inloggen
-            db.try_login("p.meeresman", "123", this);
+            //db.try_login("p.meeresman", "123", this);
         }
 
 

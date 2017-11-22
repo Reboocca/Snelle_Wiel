@@ -5,29 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SNWL_Planningsysteem"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen" Title="Inloggen op het planningsysteem" Height="500" Width="400" Icon="img/logo.png" Background="#4f4d4f">
+        WindowStartupLocation="CenterScreen" Title="Inloggen op het planningsysteem" Height="500" Width="700" Icon="img/logo.png">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF6FD1D7" Offset="0.209"/>
+            <GradientStop Color="#FFC1FBFF" Offset="1"/>
+            <GradientStop Color="#FFB9E5E8" Offset="0.613"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="title" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Background="#6fd1d7">
+        <Grid x:Name="title" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Background="#FF4F4D4F">
             <Label x:Name="lbTitel"  Content="Planningsysteem applicatie" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="16"/>
         </Grid>
 
-        <Grid x:Name="content" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Background="#e6e6e6">
+        <Grid x:Name="content" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Background="#CCE6E6E6">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="15*"/>
