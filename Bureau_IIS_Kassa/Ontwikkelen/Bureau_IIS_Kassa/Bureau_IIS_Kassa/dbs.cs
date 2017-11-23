@@ -64,9 +64,8 @@ namespace Bureau_IIS_Kassa
                 }
 
 
-                bool validPassword = BCrypt.Net.BCrypt.Verify(password, tbl.Rows[0]["password"].ToString());
 
-                if (validPassword == true)
+                if  (BCrypt.Net.BCrypt.Verify(password, tbl.Rows[0]["password"].ToString()))
                 {
                     return true;
                 }
@@ -76,10 +75,10 @@ namespace Bureau_IIS_Kassa
                     return false;
                 }
             }
-            catch
+            catch(Exception e)
             {
 
-                throw;
+                throw e;
             }
             
 
@@ -100,8 +99,7 @@ namespace Bureau_IIS_Kassa
 
             if (r)      //Als de gegevens bekend zijn in de database & kloppen
             {
-                Home f = new Home();
-                f.Show();
+                new Home().Show();
                 loginform.Close();
             }
 

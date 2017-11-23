@@ -27,7 +27,7 @@ namespace Bureau_IIS_Kassa
             InitializeComponent();
 
             //snel inloggen
-            db.try_login("kassa1", "123", this);
+            //db.try_login("kassa1", "123", this);
         }
 
         private void btLogin_Click(object sender, RoutedEventArgs e)

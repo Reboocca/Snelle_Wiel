@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bureau_IIS_Kassa"
         mc:Ignorable="d"
-        Title="Inloggen op het kassasysteem" Height="807" Width="503" Icon="img/logo_GV.png">
+        Title="Inloggen op het kassasysteem" Height="807" Width="503" Icon="img/logo_GV.png" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="img/pattern1.png" Stretch="UniformToFill"/>
     </Window.Background>
