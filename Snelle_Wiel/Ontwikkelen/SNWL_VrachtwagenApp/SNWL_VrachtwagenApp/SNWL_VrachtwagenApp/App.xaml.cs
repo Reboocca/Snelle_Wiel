@@ -13,7 +13,7 @@ namespace SNWL_VrachtwagenApp
         {
             InitializeComponent();
 
-            MainPage = new SNWL_VrachtwagenApp.MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

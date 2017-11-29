@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="SNWL_VrachtwagenApp.Homepage">
+    <ContentPage.Content>
+        <Grid BackgroundColor="#f7f7f7" RowSpacing="0" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="25*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="1" Grid.Row="1" BackgroundColor="#8edbe0"/>
+            <Label Grid.Column="1" Grid.Row="1" Text="Wagennummer: 149" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <ListView x:Name="lstInfo" Grid.Column="1" Grid.Row="2" BackgroundColor="#c6edef" ItemSelected="lstInfo_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding PakbonNr}"/>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding OpAf}"/>
+                                </Grid>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

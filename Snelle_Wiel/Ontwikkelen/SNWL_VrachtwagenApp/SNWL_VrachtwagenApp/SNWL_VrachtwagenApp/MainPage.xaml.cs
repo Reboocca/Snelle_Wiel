@@ -14,6 +14,20 @@ namespace SNWL_VrachtwagenApp
             InitializeComponent();
 
             imgLogo.Source = ImageSource.FromResource("SNWL_VrachtwagenApp.img.logo.png");
+
+            //Even snel voor testen
+            Navigate();
+        }
+
+        private void btnLogin_Clicked(object sender, EventArgs e)
+        {
+            Navigate();
+        }
+
+        private async void Navigate()
+        {
+            Homepage home = new Homepage();
+            await Navigation.PushAsync(home);
         }
     }
 }
