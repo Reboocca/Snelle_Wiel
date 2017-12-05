@@ -1,5 +1,6 @@
 ﻿using System;
-
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -21,8 +22,13 @@ namespace SNWL_VrachtwagenApp.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
-           
+
             Window.SetStatusBarColor(Android.Graphics.Color.Rgb(206, 212, 106));
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

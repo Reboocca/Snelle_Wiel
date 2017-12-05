@@ -1,30 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:CustomEditor="clr-namespace:SNWL_VrachtwagenApp"
              NavigationPage.HasNavigationBar="False"
              x:Class="SNWL_VrachtwagenApp.Feedbackform">
     <ContentPage.Content>
         <Grid BackgroundColor="#f7f7f7" RowSpacing="0" ColumnSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="30*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="25*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="20*"/>
-                <RowDefinition Height="5*"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="18*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="16*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Column="1" Grid.Row="1" BackgroundColor="#8edbe0">
-                <Image x:Name="imgMap" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            <!-- Static afbeelding map -->
+            <Grid Grid.Column="1" Grid.Row="1">
+                <ActivityIndicator x:Name="aiLoading" HorizontalOptions="Center" VerticalOptions="Center" Color="#8edbe0" IsRunning="True"/>
+                <Image x:Name="imgMap" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             </Grid>
-            <Grid Grid.Column="1" Grid.Row="2" BackgroundColor="Yellow"/>
-            <Grid Grid.Column="1" Grid.Row="3" BackgroundColor="Green"/>
-            <Grid Grid.Column="1" Grid.Row="4" BackgroundColor="Red"/>
+            
+            <!-- Knop naar Google Maps -->
+            <Button x:Name="btnRoute" Grid.Column="1" Grid.Row="3" Text="Toon de route op google maps" BackgroundColor="#767376" BorderRadius="0" TextColor="White" Clicked="btnRoute_Clicked"/>
+            
+            <!-- Informatie pakbon -->
+            <Grid Grid.Column="1" Grid.Row="5" RowSpacing="0" BackgroundColor="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" BackgroundColor="#8edbe0"/>
+                <Label x:Name="lbAdrestitel" Grid.Column="1" Grid.Row="0" Text="Ophaaladres" HorizontalOptions="FillAndExpand" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label x:Name="lbStraatnummer" Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+                <Label x:Name="lbPostPlaats" Grid.Column="1" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+            </Grid>
+
+            <!-- Feedback formulier -->
+            <Grid Grid.Column="1" Grid.Row="7" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="40*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" BackgroundColor="#8edbe0"/>
+                <Label Grid.Row="0" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="White" Text="Opmerkingen"/>
+                <CustomEditor:BorderlessEditor x:Name="tbOpmerking" Grid.Row="1" BackgroundColor="White"/>
+            </Grid>
+            
+            <!-- Geslaagd, mislukt knoppen -->
+            <Grid Grid.Column="1" Grid.Row="9">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnGeslaagd" Grid.Column="0" Text="Geslaagd" BackgroundColor="#767376" BorderRadius="0" TextColor="White" Clicked="btnGeslaagd_Clicked"/>
+                <Button x:Name="btnMislukt" Grid.Column="2" Text="Mislukt" BackgroundColor="#767376" BorderRadius="0" TextColor="White" Clicked="btnMislukt_Clicked"/>
+            </Grid>
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>

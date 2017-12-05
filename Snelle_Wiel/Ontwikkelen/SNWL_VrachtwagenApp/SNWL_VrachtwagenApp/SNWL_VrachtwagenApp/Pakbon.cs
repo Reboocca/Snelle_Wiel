@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SNWL_VrachtwagenApp
 {
-    class Pakbon
+    public class Pakbon
     {
         public string PakbonNr { get; set; }
         public string Straatnaam { get; set; }

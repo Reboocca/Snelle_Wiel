@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="preferExternal" android:versionCode="1" android:versionName="0.01">
-	<uses-sdk android:minSdkVersion="10" />
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.SNWL_VrachtwagenApp" android:installLocation="preferExternal">
+	<uses-sdk android:targetSdkVersion="25" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<application android:label="Snelle Wiel Vrachtwagen App" android:icon="@drawable/icon"></application>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<application android:label="SNWL_VrachtwagenApp.Android" android:icon="@drawable/icon"></application>
 </manifest>
