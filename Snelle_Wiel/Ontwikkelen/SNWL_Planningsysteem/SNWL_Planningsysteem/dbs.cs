@@ -23,7 +23,7 @@ namespace SNWL_Planningsysteem
         {
             try
             {
-                conn = "Server=localhost;Database=snwl_planningsysteem;Uid=root;Pwd=;";
+                conn = "Server=146.185.166.227;Database=planningsysteem_snwl;Uid=groenevingers;Pwd=groenevingers123;";
                 connect = new MySqlConnection(conn);
                 connect.Open();
             }
@@ -32,110 +32,6 @@ namespace SNWL_Planningsysteem
             {
                 MessageBox.Show("Kan geen verbinding maken met de database", "Error");
                 throw;
-            }
-        }
-
-        //Functie voor het valideren van de login
-        private bool validate_login(string user, string password)
-        {
-            DataTable tbl = new DataTable();
-            db_connection();
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.CommandText = "Select * from users where Username=@user";
-            cmd.Parameters.AddWithValue("@user", user);         //Parameter with the username
-                                                                //cmd.Parameters.AddWithValue("@pass", sHash);        // Parameter with the password
-
-            try
-            {
-                cmd.Connection = connect;
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                try
-                {
-                    tbl.Load(reader);
-                }
-                catch
-                {
-                    MessageBox.Show("Er is iets misgegaan met het laden van de gegevens", "Error");
-                }
-                finally
-                {
-                    connect.Close();
-                }
-
-
-                bool validPassword = BCrypt.Net.BCrypt.Verify(password, tbl.Rows[0]["password"].ToString());
-
-                if (validPassword == true)
-                {
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show("Kan geen verbinding maken met de server", "Error");
-                    return false;
-                }
-            }
-            catch
-            {
-
-                throw;
-            }
-
-
-        }
-
-        //Controleer wie er is ingelogd
-        public void try_login(string user, string password, MainWindow loginform)
-        {
-
-            if (user == "" || password == "")       //Kleine controle of er gegevens zijn ingevuld
-            {
-                MessageBox.Show("Vul uw gebruikersnaam en wachtwoord in", "Foutmelding");
-                return;
-            }
-
-            //Valideer de ingevoerde inloggegevens
-            bool r = validate_login(user, password);
-
-            if (r)      //Als de gegevens bekend zijn in de database & kloppen
-            {
-                Homepage f = new Homepage();
-                f.Show();
-                loginform.Close();
-            }
-
-            else            //Als de gegevens niet kloppen
-            {
-                MessageBox.Show("Uw gebruikersnaam of wachtwoord is onjuist", "Foutmelding");
-            }
-
-        }
-
-        public void newUser(string user, string password)
-        {
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-            db_connection();
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.CommandText = "insert into users (Username, Password) VALUES (@sUsername, @sPassword)";
-            cmd.Parameters.AddWithValue("@sUsername", user);                    //Parameter with Username
-            cmd.Parameters.AddWithValue("@sPassword", hashedPassword);          //Parameter with Password
-            cmd.Connection = connect;
-
-            try
-            {
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Het account is aangemaakt.", "Succes");
-            }
-
-            catch       //Foutafhandeling
-            {
-                MessageBox.Show("Er is iets mis gegaan met het opslaan van het account, probeer het nog eens.", "Error!");
-            }
-
-            finally     //Close database connection
-            {
-                connect.Close();
             }
         }
 
@@ -171,5 +67,83 @@ namespace SNWL_Planningsysteem
             return retValue;
         }
 
+        public DataTable SearchParameterLike(string sTable, string sParameterA, string sParameterB)
+        {
+            DataTable retValue = new DataTable();
+            db_connection();
+            using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM " + sTable + " WHERE " + sParameterA + " LIKE '%" + sParameterB + "%'"))
+            {
+                cmd.Connection = connect;
+                MySqlDataReader reader = cmd.ExecuteReader();
+                retValue.Load(reader);
+                connect.Close();
+            }
+
+            //Return result
+            return retValue;
+        }
+
+        public DataTable SearchNameAccount(string sTable, string sParameterA)
+        {
+            DataTable retValue = new DataTable();
+            db_connection();
+            using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM " + sTable + " WHERE Firstname LIKE '%" + sParameterA + "%' OR Insertion LIKE '%" + sParameterA + "%' OR Lastname LIKE '%" + sParameterA + "%'"))
+            {
+                cmd.Connection = connect;
+                MySqlDataReader reader = cmd.ExecuteReader();
+                retValue.Load(reader);
+                connect.Close();
+            }
+
+            //Return result
+            return retValue;
+        }
+
+        public bool DeleteAccount(string sTable, string id)
+        {
+            db_connection();
+            MySqlCommand cmd = new MySqlCommand("DELETE FROM " + sTable + " WHERE ID = @id");
+            cmd.Connection = connect;
+            cmd.Parameters.AddWithValue("@id", id);     //Parameter with ID
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+
+            catch       //Foutafhandeling
+            {
+                return false;
+            }
+
+            finally     //Close database connection
+            {
+                connect.Close();
+            }
+        }
+
+        public bool updateAccount(string sTable, string id, string voornaam, string tussenvoegsel, string achternaam, string straatnaam, string huisnummer, string woonplaats)
+        {
+            db_connection();
+            MySqlCommand cmd = new MySqlCommand("UPDATE " + sTable + " SET `Firstname`= '" + voornaam + "', `Insertion`= '" + tussenvoegsel + "', `Lastname`= '" + achternaam + "', `Streetname`= '" + straatnaam + "', `Housenumber`= '" + huisnummer + "', `City`= '" + woonplaats + "' WHERE ID =" + id);
+            cmd.Connection = connect;
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+
+            catch       //Foutafhandeling
+            {
+                return false;
+            }
+
+            finally     //Close database connection
+            {
+                connect.Close();
+            }
+        }
     }
 }

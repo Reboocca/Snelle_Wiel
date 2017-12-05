@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:SNWL_Planningsysteem"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen" Title="Planningsysteem Snelle Wiel" Height="680" Width="1300" Icon="img/logo.png" Background="#FFE6E6E6" WindowState="Maximized">
-    <Grid>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=tbZoek}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="10*"/>
@@ -16,7 +16,7 @@
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
@@ -31,7 +31,7 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
         <!-- top bar -->
@@ -53,12 +53,12 @@
 
         <!-- zoekfunctie -->
         <Grid Grid.Column="0" Grid.ColumnSpan="9" Grid.Row="1" Background="#433e40"/>
-        <TextBox x:Name="tbZoek" Tag="Voer het personeelsnummer of de naam in en druk op 'zoek'" Grid.Column="5" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbZoek" Tag="Voer het personeelsnummer of de naam in en druk op 'zoek'" Grid.Column="5" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}" KeyDown="tbZoek_KeyDown"/>
         <ComboBox x:Name="cbZoek" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14">
             <ComboBoxItem Content="Personeelsnummer" HorizontalAlignment="Left" Height="25" HorizontalContentAlignment="Stretch" IsSelected="True" />
             <ComboBoxItem Content="Naam van medewerker" HorizontalAlignment="Left" Height="25" HorizontalContentAlignment="Stretch"/>
         </ComboBox>
-        <Button x:Name="btZoek" Grid.Column="7" Grid.Row="3" VerticalAlignment="Center" Content="Zoeken" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
+        <Button x:Name="btZoek" Grid.Column="7" Grid.Row="3" VerticalAlignment="Center" Content="Zoeken" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btZoek_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#ced46a"/>
@@ -82,7 +82,7 @@
 
 
         <!-- Knoppen -->
-        <Button x:Name="btNieuw" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Content="Nieuw account toevoegen" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btNieuw_Click">
+        <Button x:Name="btRefresh" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Content="Ververs de tabel" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btRefresh_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#ced46a"/>
@@ -103,7 +103,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="btBewerken" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Content="Bewerk account" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btBewerken_Click">
+        <Button x:Name="btNieuw" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Content="Nieuw account toevoegen" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btNieuw_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#ced46a"/>
@@ -124,7 +124,28 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="btVerwijderen" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Content="Account verwijderen" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btVerwijderen_Click">
+        <Button x:Name="btBewerken" Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Content="Bewerk het account" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btBewerken_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#ced46a"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#d7dc87"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="btVerwijderen" Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Content="Account verwijderen" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btVerwijderen_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#ced46a"/>

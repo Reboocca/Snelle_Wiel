@@ -45,7 +45,7 @@
         <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9" Content="Waarschuwing" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="14"/>
 
         <!-- Waarschuwing tekst -->
-        <TextBlock TextWrapping="Wrap" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="14" Text="Weet u zeker dat u het volgende account van &lt;&lt;voornaam&gt;&gt; &lt;&lt;tussenvoegsel&gt;&gt; &lt;&lt;achternaam&gt;&gt; wilt verwijderen?"/>
+        <TextBlock x:Name="tbText" TextWrapping="Wrap" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="14" Text="Weet u zeker dat u het volgende account van &lt;&lt;voornaam&gt;&gt; &lt;&lt;tussenvoegsel&gt;&gt; &lt;&lt;achternaam&gt;&gt; wilt verwijderen?"/>
 
         <!-- Buttons -->
         <Button x:Name="btAccepteren" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Content="Account verwijderen" Height="30" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White" Click="btAccepteren_Click" >

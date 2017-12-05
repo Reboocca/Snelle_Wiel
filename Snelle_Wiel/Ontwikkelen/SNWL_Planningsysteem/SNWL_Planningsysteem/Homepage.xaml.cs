@@ -23,14 +23,18 @@ namespace SNWL_Planningsysteem
         List<Pakbonlijst> lstPakbonnen2 = new List<Pakbonlijst>();
         List<Pakbonlijst> lstPakbonnen3 = new List<Pakbonlijst>();
         dbs db = new dbs();
-        public Homepage()
+
+        string id;
+        public Homepage(string userid)
         {
             InitializeComponent();
+
+            id = userid;
         }
 
         private void btBeheren_Click(object sender, RoutedEventArgs e)
         {
-            Admin f = new Admin();
+            Admin f = new Admin(id);
             f.Show();
             this.Close();
         }

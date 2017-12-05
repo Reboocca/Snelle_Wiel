@@ -32,7 +32,7 @@
             <Label x:Name="lbTitel"  Content="Planningsysteem applicatie" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="24"/>
         </Grid>
 
-        <Grid x:Name="content" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="3" Background="#CCFFFFFF">
+        <Grid x:Name="content" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="3" Background="#CCFFFFFF" FocusManager.FocusedElement="{Binding ElementName=tbUsername}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>

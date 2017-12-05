@@ -21,35 +21,81 @@ namespace SNWL_Planningsysteem
     public partial class Admin : Window
     {
         public List<Account> lstAccounts = new List<Account>();
+        dbs db = new dbs();
+        string id;
 
-        public Admin()
+        public Admin(string userid)
         {
             InitializeComponent();
-            LoadList();
+
+            id = userid;
+            getAccounts();
         }
 
-
-        public void LoadList()
+        private void getAccounts()
         {
-            lstAccounts.Add(new Account() { PersoneelsNr = "1523", Voornaam = "Piet", Tussenvoegsel = "", Achternaam = "Meeresman", Woonplaats = "Eindhoven", Adres = "Florencelaan 43", Rol = "Planner" });
-            lstAccounts.Add(new Account() { PersoneelsNr = "1386", Voornaam = "Erik", Tussenvoegsel = "van den", Achternaam = "Borg", Woonplaats = "Veldhoven", Adres = "Buizerd 170", Rol = "Chauffeur" });
-            lstAccounts.Add(new Account() { PersoneelsNr = "1832", Voornaam = "Frans", Tussenvoegsel = "", Achternaam = "Keizer", Woonplaats = "Helmond", Adres = "Tivoli 14", Rol = "Chauffeur" });
-            lstAccounts.Add(new Account() { PersoneelsNr = "1588", Voornaam = "Jan", Tussenvoegsel = "van", Achternaam = "Dongeren", Woonplaats = "Geldrop", Adres = "Gimli 6", Rol = "Chauffeur" });
+            lstAccounts.Clear();
+            dgMedewerkers.ItemsSource = null;
+
+            DataTable dtChauffeurs = db.Search("chauffeurinfo");
+
+            foreach (DataRow row in dtChauffeurs.Rows)
+            {
+                lstAccounts.Add(new Account() { PersoneelsNr = row["ID"].ToString(), Voornaam = row["Firstname"].ToString(), Tussenvoegsel = row["Insertion"].ToString(), Achternaam = row["Lastname"].ToString(), Rol = "Chauffeur" });
+            }
+
+            DataTable dtPlanners = db.Search("plannerinfo");
+
+            foreach (DataRow row in dtPlanners.Rows)
+            {
+                lstAccounts.Add(new Account() { PersoneelsNr = row["ID"].ToString(), Voornaam = row["Firstname"].ToString(), Tussenvoegsel = row["Insertion"].ToString(), Achternaam = row["Lastname"].ToString(), Rol = "Planner" });
+            }
 
             dgMedewerkers.ItemsSource = lstAccounts;
         }
 
-
-
-        public class Account
+        private void SearchOnID()
         {
-            public string PersoneelsNr { get; set; }
-            public string Voornaam { get; set; }
-            public string Tussenvoegsel { get; set; }
-            public string Achternaam { get; set; }
-            public string Woonplaats { get; set; }
-            public string Adres { get; set; }
-            public string Rol { get; set; }
+            lstAccounts.Clear();
+            dgMedewerkers.ItemsSource = null;
+
+            DataTable dtChauffeurs = db.SearchParameterLike("chauffeurinfo", "ID", tbZoek.Text);
+
+            foreach (DataRow row in dtChauffeurs.Rows)
+            {
+                lstAccounts.Add(new Account() { PersoneelsNr = row["ID"].ToString(), Voornaam = row["Firstname"].ToString(), Tussenvoegsel = row["Insertion"].ToString(), Achternaam = row["Lastname"].ToString(), Rol = "Chauffeur" });
+            }
+
+            DataTable dtPlanners = db.SearchParameterLike("plannerinfo", "ID", tbZoek.Text);
+
+            foreach (DataRow row in dtPlanners.Rows)
+            {
+                lstAccounts.Add(new Account() { PersoneelsNr = row["ID"].ToString(), Voornaam = row["Firstname"].ToString(), Tussenvoegsel = row["Insertion"].ToString(), Achternaam = row["Lastname"].ToString(), Rol = "Planner" });
+            }
+
+            dgMedewerkers.ItemsSource = lstAccounts;
+        }
+
+        private void SearchOnName()
+        {
+            lstAccounts.Clear();
+            dgMedewerkers.ItemsSource = null;
+
+            DataTable dtChauffeurs = db.SearchNameAccount("chauffeurinfo", tbZoek.Text);
+
+            foreach (DataRow row in dtChauffeurs.Rows)
+            {
+                lstAccounts.Add(new Account() { PersoneelsNr = row["ID"].ToString(), Voornaam = row["Firstname"].ToString(), Tussenvoegsel = row["Insertion"].ToString(), Achternaam = row["Lastname"].ToString(), Rol = "Chauffeur" });
+            }
+
+            DataTable dtPlanners = db.SearchNameAccount("plannerinfo", tbZoek.Text);
+
+            foreach (DataRow row in dtPlanners.Rows)
+            {
+                lstAccounts.Add(new Account() { PersoneelsNr = row["ID"].ToString(), Voornaam = row["Firstname"].ToString(), Tussenvoegsel = row["Insertion"].ToString(), Achternaam = row["Lastname"].ToString(), Rol = "Planner" });
+            }
+
+            dgMedewerkers.ItemsSource = lstAccounts;
         }
 
         private void btNieuw_Click(object sender, RoutedEventArgs e)
@@ -60,17 +106,20 @@ namespace SNWL_Planningsysteem
 
         private void btTerug_Click(object sender, RoutedEventArgs e)
         {
-            Homepage f = new Homepage();
+            Homepage f = new Homepage(id);
             f.Show();
             this.Close();
         }
 
         private void btBewerken_Click(object sender, RoutedEventArgs e)
         {
-            //
             if (dgMedewerkers.SelectedCells.Count > 0)
             {
+                string personeelsnr = ((Account)(dgMedewerkers.SelectedItem)).PersoneelsNr;
+                string rol = ((Account)(dgMedewerkers.SelectedItem)).Rol;
 
+                EditAccount f = new EditAccount(personeelsnr, rol);
+                f.Show();
             }
             else
             {
@@ -82,13 +131,62 @@ namespace SNWL_Planningsysteem
         {
             if (dgMedewerkers.SelectedCells.Count > 0)
             {
-                DeleteAccount f = new DeleteAccount();
-                f.Show();
+                string personeelsnr = ((Account)(dgMedewerkers.SelectedItem)).PersoneelsNr;
+                string rol = ((Account)(dgMedewerkers.SelectedItem)).Rol;
+
+                DeleteAccount f = new DeleteAccount(personeelsnr, rol);
+                f.Show();                      
             }
             else
             {
                 MessageBox.Show("Selecteer eerst een medeweker voordat u verder kunt", "Foutmelding");
             }
+        }
+
+        private void btZoek_Click(object sender, RoutedEventArgs e)
+        {
+            if(tbZoek.Text == "")
+            {
+                getAccounts();
+            }
+            else
+            {
+                if (cbZoek.SelectedIndex == 0)
+                {
+                    SearchOnID();
+                }
+                else if (cbZoek.SelectedIndex == 1)
+                {
+                    SearchOnName();
+                }
+            }
+        }
+
+        private void tbZoek_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (tbZoek.Text == "")
+                {
+                    getAccounts();
+                }
+                else
+                {
+                    if (cbZoek.SelectedIndex == 0)
+                    {
+                        SearchOnID();
+                    }
+                    else if (cbZoek.SelectedIndex == 1)
+                    {
+                        SearchOnName();
+                    }
+                }
+            }
+        }
+
+        private void btRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            getAccounts();
         }
     }
 }

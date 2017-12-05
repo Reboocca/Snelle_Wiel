@@ -61,7 +61,7 @@
 
         <!-- Formulier -->
         <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Text="Kies een rol voor de nieuwe gebruiker en vul de onderstaande velden in." VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow" FontFamily="Calibri Light" FontSize="14"/>
-        <ComboBox x:Name="cbRol" SelectedValuePath="Content" Grid.Column="7" Grid.ColumnSpan="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" SelectionChanged="cbRol_SelectionChanged">
+        <ComboBox x:Name="cbRol" SelectedValuePath="Content" Grid.Column="7" Grid.ColumnSpan="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14">
             <ComboBoxItem Content="Planner" HorizontalAlignment="Left" Height="25" HorizontalContentAlignment="Stretch" IsSelected="True" />
             <ComboBoxItem Content="Chauffeur" HorizontalAlignment="Left" Height="25" HorizontalContentAlignment="Stretch"/>
         </ComboBox>

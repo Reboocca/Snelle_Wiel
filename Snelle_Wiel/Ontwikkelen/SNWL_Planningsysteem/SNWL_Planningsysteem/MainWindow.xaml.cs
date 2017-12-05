@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,15 +21,10 @@ namespace SNWL_Planningsysteem
     /// </summary>
     public partial class MainWindow : Window
     {
-        dbs db = new dbs();
         public MainWindow()
         {
             InitializeComponent();
-
-            //snel inloggen
-            //db.try_login("p.meeresman", "123", this);
         }
-
 
 
         private void btLogin_Click(object sender, RoutedEventArgs e)
@@ -36,7 +32,7 @@ namespace SNWL_Planningsysteem
             Login();
         }
 
-        private void Login()
+        private async void Login()
         {
             if (tbUsername.Text == "" || pbPassword.Password == "")
             {
@@ -44,8 +40,25 @@ namespace SNWL_Planningsysteem
             }
             else
             {
-                //db.newUser(tbUsername.Text, pbPassword.Password);
-                db.try_login(tbUsername.Text, pbPassword.Password, this);
+                string webadres = "https://hobbithole.000webhostapp.com/snwl/login_planning.php?user=" + tbUsername.Text + " &pwd=" + pbPassword.Password;
+                HttpClient connect = new HttpClient();
+                HttpResponseMessage logincheck = await connect.GetAsync(webadres);
+                // gebruik eventueel PostAsync
+                logincheck.EnsureSuccessStatusCode();
+
+                string login  = await logincheck.Content.ReadAsStringAsync();
+
+                if (login != "false")
+                {
+                    Homepage f = new Homepage(login);
+                    f.Show();
+                    this.Close();
+                    
+                }
+                else if(login == "false")
+                {
+                    MessageBox.Show("Het ingevoerde gebruikersnaam en/of wachtwoord is onjuist.", "Foutmelding");
+                }
             }
         }
 
