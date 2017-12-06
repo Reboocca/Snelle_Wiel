@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="Opdracht.xsl"?>
+
+<bezorgorder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="Opdracht.xsd">
+
+	<datum>10/10/07 17:12</datum>
+	<orderref>111007B000054</orderref>
+	<ophaaltijdvanaf>12/10/07 07:30 </ophaaltijdvanaf>	
+	<aflevertijdtot>12/10/07 19:00</aflevertijdtot>	
+	<opdrachtgever>
+		<nr>1</nr>
+		<naam>Groene Vingers</naam>
+	</opdrachtgever>
+	<zender>
+		<nr>K3aB</nr>
+		<naam>Kassa 3a Best</naam>
+	</zender>
+	<ophaaladres>
+		<nr>M18B</nr>
+		<naam>Uitgang 18 Best</naam>
+	</ophaaladres>
+	<afleveradres>
+		<nr>8435595</nr>
+		<naam>Franssen</naam>
+		<straat>Zeedijk</straat>
+		<huisnr>74</huisnr>
+		<plaats>Best</plaats>
+		<postcode>5501XL</postcode>
+		<telefoonnr>0402443213</telefoonnr>
+	</afleveradres>
+	<artikel>
+		<nr>23273</nr>
+		<naam>Jasminum parkeri</naam>
+		<aantal>11</aantal>
+	</artikel>
+	<artikel>
+		<nr>24140</nr>
+		<naam>Kadsura japonica</naam>
+		<aantal>6</aantal>
+	</artikel>
+	<artikel>
+		<nr>24445</nr>
+		<naam>Viburnum tinus 'Macrophyllum'</naam>
+		<aantal>20</aantal>
+	</artikel>
+	<artikel>
+		<nr>10377</nr>
+		<naam>B-A-C biobloeistimulator 120 ml</naam>
+		<aantal>1					</aantal>
+	</artikel>
+	<artikel>
+		<nr>10141</nr>
+		<naam>No Mercy Supply Bacterial 50 ml</naam>
+		<aantal>1					</aantal>
+	</artikel>
+	<laadgegevens>
+		<aantal>39</aantal>
+		<kg>5</kg>
+		<m3>0.5</m3>
+	</laadgegevens>
+</bezorgorder>

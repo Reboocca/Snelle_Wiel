@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bevestiging xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="Bevestiging.xsd">
+
+	<datum>11/10/07 17:22</datum>
+	<orderref>111007B000054</orderref>
+	<volgnr>1</volgnr>
+	<aflevertijdplan>12/10/07 17:00</aflevertijdplan>	
+	<opdrachtgever>
+		<nr>1</nr>
+		<naam>Groene Vingers</naam>
+	</opdrachtgever>
+</bevestiging>

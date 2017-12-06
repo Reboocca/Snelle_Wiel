@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rekening xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="Rekening.xsd">
+
+	<datum>11/10/07 17:12</datum>
+	<orderref>111007B000054</orderref>
+	<volgnr>1</volgnr>
+	<opdrachtgever>
+		<nr>1</nr>
+		<naam>Groene Vingers</naam>
+	</opdrachtgever>
+	<afleveradres>
+		<nr>8435595</nr>
+		<naam>Franssen</naam>
+		<straat>Zeedijk</straat>
+		<huisnr>74</huisnr>
+		<plaats>Best</plaats>
+		<postcode>5501XL</postcode>
+		<telefoonnr>0402443213</telefoonnr>
+	</afleveradres>
+	<laadgegevens>
+		<aantal>39</aantal>
+		<kg>5</kg>
+		<m3>0.5</m3>
+	</laadgegevens>
+	<retourlaadgegevens>
+		<aantal>5</aantal>
+		<kg>0.5</kg>
+		<m3>0.1</m3>
+	</retourlaadgegevens>
+	<afleverbedrag>20.90</afleverbedrag>
+	<retourbedrag>5.85</retourbedrag>
+</rekening>

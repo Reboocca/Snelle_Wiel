@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SNWL_Planningsysteem"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen" Title="Planningsysteem Snelle Wiel" Height="680" Width="1300" Icon="img/logo.png" Background="#FFE6E6E6" WindowState="Maximized">
+        WindowStartupLocation="CenterScreen" Title="Planningsysteem Snelle Wiel" Height="680" Width="1300" Icon="img/snwi_transparant_circle.png" Background="#FFE6E6E6" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -34,7 +34,7 @@
                 <RowDefinition Height="15*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <Image x:Name="imgLogo" Grid.Row="1" Grid.Column="0" Source="img/logo.png"/>
+            <Image x:Name="imgLogo" Grid.Row="1" Grid.Column="0" Source="img/snwi_transparant_circle.png"/>
             <Label x:Name="lbCompany"  Grid.Row="1" Grid.Column="1" Content="Snelle Wiel" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontFamily="Calibri Light" FontSize="16"/>
         </Grid>
         <Label x:Name="lbTitel"  Grid.Row="0" Grid.Column="3" Content="Planningsysteem applicatie" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="26"/>
@@ -54,29 +54,7 @@
             </Grid.RowDefinitions>
 
             <TreeView x:Name="tvDatums" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="16">
-                <TreeViewItem Header="28 november">
-                    <TreeViewItem Header="Pakbon 1432" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                    <TreeViewItem Header="Pakbon 1532" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                    <TreeViewItem Header="Pakbon 1333" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                </TreeViewItem>
-                <TreeViewItem Header="29 november">
-                    <TreeViewItem Header="Pakbon 1437" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                    <TreeViewItem Header="Pakbon 1753" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                    <TreeViewItem Header="Pakbon 1293" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                    <TreeViewItem Header="Pakbon 1124" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                </TreeViewItem>
-                <TreeViewItem Header="30 november">
-                    <TreeViewItem Header="Pakbon 1001" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                    <TreeViewItem Header="Pakbon 1022" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                    <TreeViewItem Header="Pakbon 1233" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                    <TreeViewItem Header="Pakbon 1334" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                </TreeViewItem>
-                <TreeViewItem Header="1 december">
-                    <TreeViewItem Header="Pakbon 1562" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                    <TreeViewItem Header="Pakbon 1283" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                    <TreeViewItem Header="Pakbon 1933" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                    <TreeViewItem Header="Pakbon 1304" FontSize="14" Selected="OpenPakbon"></TreeViewItem>
-                </TreeViewItem>
+                
             </TreeView>
 
         </Grid>

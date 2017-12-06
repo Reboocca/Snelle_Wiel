@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SNWL_Planningsysteem"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen" Title="Planningsysteem Snelle Wiel" Height="480" Width="600" Icon="img/logo.png" Background="#FFE6E6E6">
+        WindowStartupLocation="CenterScreen" Title="Planningsysteem Snelle Wiel" Height="480" Width="600" Icon="img/snwi_transparant_circle.png" Background="#FFE6E6E6">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -44,7 +44,7 @@
                 <RowDefinition Height="15*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <Image x:Name="imgLogo" Grid.Row="1" Grid.Column="0" Source="img/logo.png"/>
+            <Image x:Name="imgLogo" Grid.Row="1" Grid.Column="0" Source="img/snwi_transparant_circle.png"/>
             <Label x:Name="lbCompany"  Grid.Row="1" Grid.Column="1" Content="Snelle Wiel" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontFamily="Calibri Light" FontSize="16"/>
         </Grid>
         <Label x:Name="lbTitel"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Content="Planningsysteem applicatie" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="26"/>

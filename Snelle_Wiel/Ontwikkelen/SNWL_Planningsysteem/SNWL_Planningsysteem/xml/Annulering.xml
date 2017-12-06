@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<annulering xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="Annulering.xsd">
+
+	<datum>11/10/07 17:12</datum>
+	<orderref>111007B000054</orderref>
+	<volgnr>1</volgnr>
+	<reden>geen voorraad</reden>	
+	<opdrachtgever>
+		<nr>1</nr>
+		<naam>Groene Vingers</naam>
+	</opdrachtgever>
+	<artikel>
+		<nr>23273</nr>
+		<naam>Jasminum parkeri</naam>
+		<aantal>2</aantal>
+	</artikel>
+	<artikel>
+		<nr>24140</nr>
+		<naam>Kadsura japonica</naam>
+		<aantal>3</aantal>
+	</artikel>
+	<laadgegevens>
+		<aantal>5</aantal>
+		<kg>0.5</kg>
+		<m3>0.1</m3>
+	</laadgegevens>
+</annulering>
