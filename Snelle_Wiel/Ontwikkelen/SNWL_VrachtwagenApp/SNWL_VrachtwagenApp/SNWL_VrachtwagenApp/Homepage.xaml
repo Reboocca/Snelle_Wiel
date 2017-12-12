@@ -21,7 +21,7 @@
             <Grid Grid.Column="1" Grid.Row="1" BackgroundColor="#8edbe0"/>
             
             <!-- Listview met pakbonnen -->
-            <Label Grid.Column="1" Grid.Row="1" Text="Wagennummer: 149" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Grid.Column="1" Grid.Row="1" Text="Planning voor vandaag:" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
             <ListView x:Name="lstInfo" Grid.Column="1" Grid.Row="2" BackgroundColor="#c6edef" ItemSelected="lstInfo_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -42,7 +42,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
+            <Label x:Name="lbGeenPakbon" Grid.Column="1" Grid.Row="2" Text="Er staan momenteel geen pakbonnen op de planning." HorizontalOptions="Center" VerticalOptions="StartAndExpand" IsVisible="False"/>
+            <ActivityIndicator x:Name="aiLoading" Grid.Column="1" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="Center" Color="#8edbe0" IsRunning="True"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

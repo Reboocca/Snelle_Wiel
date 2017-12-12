@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace SNWL_VrachtwagenApp
     {
         private string pakbonnr { get; set; }
         private string opaf { get; set; }
+        Chauffeur chauffeur = new Chauffeur();
 
         private List<Pakbon> lstpakbonnen { get; set; }
 
@@ -26,13 +28,14 @@ namespace SNWL_VrachtwagenApp
         public string sWoonplaats { get; set; }
         public string sPostcode { get; set; }
 
-        public Feedbackform(string PakbonNr, string OpAf, List<Pakbon> lstPakbonnen)
+        public Feedbackform(string PakbonNr, string OpAf, List<Pakbon> lstPakbonnen, Chauffeur chauff)
         {
             InitializeComponent();
 
             pakbonnr = PakbonNr;
             opaf = OpAf;
             lstpakbonnen = lstPakbonnen;
+            chauffeur = chauff;
 
            
 
@@ -69,12 +72,23 @@ namespace SNWL_VrachtwagenApp
 
         private async void getCurrentLocation()
         {
-            //code van: https://gist.github.com/nuitsjp/44ecb3954bb19779633932ee045bce8d, on de huidige locatie op te slaan in lat en long
-            var location = CrossGeolocator.Current;
-            var currentposition = await location.GetPositionAsync();
+            try
+            {
+                //code van: https://gist.github.com/nuitsjp/44ecb3954bb19779633932ee045bce8d, on de huidige locatie op te slaan in lat en long
+                var location = CrossGeolocator.Current;
+                var currentposition = await location.GetPositionAsync();
 
-            sLat = currentposition.Latitude.ToString();
-            sLong = currentposition.Longitude.ToString();
+                sLat = currentposition.Latitude.ToString();
+                sLong = currentposition.Longitude.ToString();
+            }
+            catch (Exception)
+            {
+                DisplayAlert("Foutmelding", "De applicatie heeft geen toegang tot uw locatie, u wordt teruggestuurd naar de vorige pagina", "Ok");
+                Homepage home = new Homepage(chauffeur);
+                await Navigation.PushAsync(home);
+                throw;
+            }
+           
 
             //Zorg dat de gebruiker alleen de route op google maps kan bekijken wanneer de lat en long berekend zijn
             btnRoute.IsEnabled = true;
@@ -104,7 +118,7 @@ namespace SNWL_VrachtwagenApp
 
         private void btnMislukt_Clicked(object sender, EventArgs e)
         {
-            if(tbOpmerking.Text == "")
+            if(tbOpmerking.Text == null)
             {
                 DisplayAlert("Let op", "Wanneer de opdracht niet geslaagd is, dient u een opmerking in te voeren", "Terug");
             }
@@ -115,9 +129,47 @@ namespace SNWL_VrachtwagenApp
             
         }
 
-        private void Voltooid(bool resultaat)
+        private async void Voltooid(bool resultaat)
         {
             //functie voor het opslaan van het resultaat
+            string status;
+            if (resultaat)
+            {
+                status = "Geslaagd";
+            }
+            else
+            {
+                status = "Mislukt";
+            }
+
+            try
+            {
+                string webadres = "https://hobbithole.000webhostapp.com/snwl/update_feedback.php?pakbon=" + pakbonnr + "&status=" + status + "&opmerking=" + tbOpmerking.Text;
+                HttpClient connect = new HttpClient();
+                HttpResponseMessage updatetable = await connect.GetAsync(webadres);
+                // gebruik eventueel PostAsync
+                updatetable.EnsureSuccessStatusCode();
+
+                string result = await updatetable.Content.ReadAsStringAsync();
+
+                if (result == "true")
+                {
+                    await DisplayAlert("Succes", "Het is opgeslagen in de database en u wordt nu teruggestuurd naar de vorige pagina.", "ok");
+
+                    Homepage home = new Homepage(chauffeur);
+                    await Navigation.PushAsync(home);
+                }
+                else
+                {
+                    await DisplayAlert("Foutmelding", "De feedback is niet opgeslagen, probeerh het opnieuw of contacteer een beheerder.", "terug");
+                }
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("Foutmelding", "Kan geen verbinding maken met de database, check uw internet verbinding of neem contact op met een beheerder.", "terug");
+                
+            }
+
         }
     }
 }

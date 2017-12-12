@@ -39,9 +39,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BorderlessEditor.cs" />
+    <Compile Include="Chauffeur.cs" />
     <Compile Include="Feedbackform.xaml.cs">
       <DependentUpon>Feedbackform.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GetPakbonnen.cs" />
     <Compile Include="Homepage.xaml.cs">
       <DependentUpon>Homepage.xaml</DependentUpon>
     </Compile>
@@ -49,6 +51,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pakbon.cs" />
+    <Compile Include="Pakbonnen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +65,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Plugin.Geolocator, Version=4.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugin.Geolocator.4.1.3\lib\netstandard1.0\Plugin.Geolocator.dll</HintPath>
     </Reference>
@@ -87,7 +93,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="img\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

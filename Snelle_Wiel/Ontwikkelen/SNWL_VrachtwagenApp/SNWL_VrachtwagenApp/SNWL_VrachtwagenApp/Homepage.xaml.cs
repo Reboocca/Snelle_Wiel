@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,10 +13,13 @@ namespace SNWL_VrachtwagenApp
     public partial class Homepage : ContentPage
     {
         public static List<Pakbon> lstPakbonnen = new List<Pakbon>();
+        Chauffeur chauffeur = new Chauffeur();
 
-        public Homepage()
+        public Homepage(Chauffeur chauff)
         {
             InitializeComponent();
+
+            chauffeur = chauff;
 
             LoadList();
         }
@@ -28,20 +31,46 @@ namespace SNWL_VrachtwagenApp
 
         private async void Navigate()
         {
-            Feedbackform fbform = new Feedbackform(((Pakbon)(lstInfo.SelectedItem)).PakbonNr, ((Pakbon)(lstInfo.SelectedItem)).OpAf, lstPakbonnen);
+            Feedbackform fbform = new Feedbackform(((Pakbon)(lstInfo.SelectedItem)).PakbonNr, ((Pakbon)(lstInfo.SelectedItem)).OpAf, lstPakbonnen, chauffeur);
             await Navigation.PushAsync(fbform);
         }
 
-        private void LoadList()
+        private async void LoadList()
         {
-            lstPakbonnen.Add(new Pakbon { PakbonNr = "1332", Straatnaam = "Firmamentlaan", Huisnummer = "3", Postcode = "5632 AA", Plaats = "Eindhoven", OpAf = "Op" });
-            lstPakbonnen.Add(new Pakbon { PakbonNr = "1242", Straatnaam = "Boschdijk", Huisnummer = "372", Postcode = "5622 PB", Plaats = "Eindhoven", OpAf = "Op" });
-            lstPakbonnen.Add(new Pakbon { PakbonNr = "1332", Straatnaam = "Italiëlaan", Huisnummer = "2", Postcode = "5632 TE", Plaats = "Eindhoven", OpAf = "Af" });
-            lstPakbonnen.Add(new Pakbon { PakbonNr = "1242", Straatnaam = "Betuwelaan", Huisnummer = "7", Postcode = "5628 BM", Plaats = "Eindhoven", OpAf = "Af" });
-            lstPakbonnen.Add(new Pakbon { PakbonNr = "1920", Straatnaam = "Bilderdijklaan", Huisnummer = "9", Postcode = "5611 NG", Plaats = "Eindhoven", OpAf = "Op" });
-            lstPakbonnen.Add(new Pakbon { PakbonNr = "1920", Straatnaam = "Heezerweg", Huisnummer = "215", Postcode = "5643 KA", Plaats = "Eindhoven", OpAf = "Af" });
+            string date = DateTime.Now.ToString("dd/MM/yyyy".Replace("/","-"));
+
+            lstPakbonnen = await GetPakbonnen.getPakbonlist(chauffeur.id, date);
+
+            if(lstPakbonnen.Count == 0)
+            {
+                lbGeenPakbon.IsVisible = true;
+            }
 
             lstInfo.ItemsSource = lstPakbonnen;
+            aiLoading.IsRunning = false;
+        }
+
+        //code van: https://stackoverflow.com/questions/32163471/confirmation-dialog-on-back-button-press-event-xamarin-forms voor terugknop
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                var result = await this.DisplayAlert("Melding", "Weet u zeker dat u wilt uitloggen?", "Ja", "Nee");
+                if (result)
+                {
+                    //Uitloggen
+                    lstPakbonnen.Clear();
+                    lstInfo.ItemsSource = null;
+                    lbGeenPakbon.IsVisible = false;
+
+                    MainPage login = new MainPage();
+                    await Navigation.PushAsync(login);
+                }
+
+            });
+
+            return true;
         }
     }
+
 }
