@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SNWL_Planningsysteem"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen" Title="Planningsysteem Snelle Wiel" Height="580" Width="1100" Icon="img/snwi_transparant_circle.png" Background="#FFE6E6E6">
+         WindowStartupLocation="CenterScreen" Title="Planningsysteem Snelle Wiel" Height="580" Width="845.5" Icon="img/logo.png" Background="#FFE6E6E6">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -41,7 +41,6 @@
         <!-- top bar -->
         <Grid x:Name="Topbar" Grid.Column="0" Grid.ColumnSpan="15" Grid.Row="0" Background="#4f4d4f">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="80*"/>
                 <ColumnDefinition Width="1*"/>
@@ -51,8 +50,8 @@
                 <RowDefinition Height="15*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <Image x:Name="imgLogo" Grid.Row="1" Grid.Column="1" Source="img/snwi_transparant_circle.png"/>
-            <Label x:Name="lbCompany"  Grid.Row="1" Grid.Column="2" Content="Snelle Wiel" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontFamily="Calibri Light" FontSize="16"/>
+            <Image x:Name="imgLogo" Grid.Row="1" Grid.Column="0" Source="img/logo.png"/>
+            <Label x:Name="lbCompany"  Grid.Row="1" Grid.Column="1" Content="Snelle Wiel" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontFamily="Calibri Light" FontSize="16"/>
         </Grid>
         <Label x:Name="lbTitel"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="11" Content="Planningsysteem applicatie" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Calibri Light" FontSize="26"/>
 
@@ -64,23 +63,14 @@
         <TextBox x:Name="tbDatum" Grid.Column="1" Grid.Row="5" Tag="Datum" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
         <TextBox x:Name="tbKlant" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="5" Tag="Klant" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
         <TextBox x:Name="tbBezorger" Grid.Column="7" Grid.ColumnSpan="3" Grid.Row="5" Tag="Bezorger" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
-
+        
         <TextBox x:Name="tbPakbonNr" Grid.Column="1" Grid.Row="7" Tag="Pakbonnummer" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
-        <ListView x:Name="lvArtikel" Grid.Column="5" Grid.ColumnSpan="5" VerticalAlignment="Stretch" Grid.Row="7" Grid.RowSpan="3" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="14">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="NR" DisplayMemberBinding="{Binding nr}"/>
-                    <GridViewColumn Header="Naam" DisplayMemberBinding="{Binding naam}"/>
-                    <GridViewColumn Header="Aantal" DisplayMemberBinding="{Binding aantal}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <TextBox x:Name="tbGewicht" Grid.Column="3" Grid.Row="7" Tag="Gewicht" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
-
-        <TextBox x:Name="tbVan" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" Tag="Huidige locatie" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
-        <TextBox x:Name="tbNaar" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="11" Tag="Gewenste locatie" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
-        <TextBox x:Name="tbOpmerking" Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="11" Tag="Opmerkingen" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
-        <TextBox x:Name="tbStatus" Grid.Column="9" Grid.Row="11" Tag="Status" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbPakket" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="7" Tag="Wat er in het pakket zit" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbGewicht" Grid.Column="7" Grid.Row="7" Tag="Gewicht" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        
+         <TextBox x:Name="tbVan" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" Tag="Huidige locatie" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbNaar" Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="9" Tag="Gewenste locatie" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbStatus" Grid.Column="9" Grid.Row="9" Tag="Status" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
 
         <StackPanel x:Name="spRijbewijs" Grid.Column="7" Grid.ColumnSpan="3" Grid.Row="7" Grid.RowSpan="8">
             <StackPanel.Style>
@@ -112,7 +102,7 @@
 
 
         <!-- Knoppen -->
-        <Button x:Name="btUitprinten" Grid.Column="1" Grid.ColumnSpan="9" Grid.Row="13" VerticalAlignment="Center" Content="Pakbon uitprinten" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
+        <Button x:Name="btOpslaan" Grid.Column="1" Grid.ColumnSpan="9" Grid.Row="12" VerticalAlignment="Center" Content="Pakbon wijzigen" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#ced46a"/>
@@ -133,5 +123,9 @@
                 </Style>
             </Button.Style>
         </Button>
+
+
+
+
     </Grid>
 </Window>
