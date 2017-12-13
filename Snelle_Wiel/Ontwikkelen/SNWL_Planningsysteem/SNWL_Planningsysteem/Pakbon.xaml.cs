@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,9 @@ namespace SNWL_Planningsysteem
     /// </summary>
     public partial class Pakbon : Window
     {
+        dbs db = new dbs();
+        string pakbonnr;
+
         public Pakbon(TreeViewItem tr, List<Homepage.allpakbon> lstpkb)
         {
             InitializeComponent();
@@ -29,6 +33,7 @@ namespace SNWL_Planningsysteem
             {
                 if (pkbn.pkbinfo.Orderref == tr.Header.ToString())
                 {
+                    pakbonnr = pkbn.pkbinfo.Orderref;
                     tbDatum.Text = pkbn.pkbinfo.Datum;
                     tbKlant.Text = pkbn.opdrgv.nr + ", " + pkbn.opdrgv.naam;
                     tbPakbonNr.Text = pkbn.pkbinfo.Orderref;
@@ -42,7 +47,30 @@ namespace SNWL_Planningsysteem
 
                 }
             }
+
+            LoadDatabaseGegevens();
         }
+
+        public void LoadDatabaseGegevens()
+        {
+            DataTable dtChauffeurs = db.PakbonDbsGegevensDBS(pakbonnr);
+
+            foreach (DataRow row in dtChauffeurs.Rows)
+            {
+                if(row["Insertion"] == null)
+                {
+                    tbBezorger.Text = row["Firstname"].ToString() + " " + row["Lastname"].ToString();
+                }
+                else
+                {
+                    tbBezorger.Text = row["Firstname"].ToString() + " " + row["Insertion"].ToString() + " " + row["Lastname"].ToString();
+                }
+
+                tbStatus.Text = row["Status"].ToString();
+                tbOpmerking.Text = row["Opmerkingen"].ToString();
+            }
+        }
+
         public class MyArtikel
         {
             public string nr { get; set; }

@@ -145,5 +145,21 @@ namespace SNWL_Planningsysteem
                 connect.Close();
             }
         }
+
+        public DataTable PakbonDbsGegevensDBS(string pakbonnr)
+        {
+            DataTable retValue = new DataTable();
+            db_connection();
+            using (MySqlCommand cmd = new MySqlCommand("SELECT chauffeurinfo.Firstname, chauffeurinfo.Insertion, chauffeurinfo.Lastname, planning.Status, planning.Opmerkingen FROM planning INNER JOIN chauffeurinfo ON planning.idChauffeur = chauffeurinfo.ID where planning.idPakbon = '" + pakbonnr + "'"))
+            {
+                cmd.Connection = connect;
+                MySqlDataReader reader = cmd.ExecuteReader();
+                retValue.Load(reader);
+                connect.Close();
+            }
+
+            //Return result
+            return retValue;
+        }
     }
 }
