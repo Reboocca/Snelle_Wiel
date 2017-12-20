@@ -61,11 +61,11 @@
 
         <!-- Formulier -->
         <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="9" Text="Hieronder ziet u de algemene informatie van de geselecteerde pakbon. U kunt deze gegevens wijzigen via de onderstaande invulvelden. Momenteel worden de gegevens nog niet geladen, aangezien dit het prototype is voor de tussenoplevering van het Snelle Wiel project." VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow" FontFamily="Calibri Light" FontSize="14"/>
-        <TextBox x:Name="tbDatum" Grid.Column="1" Grid.Row="5" Tag="Datum" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
-        <TextBox x:Name="tbKlant" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="5" Tag="Klant" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
-        <TextBox x:Name="tbBezorger" Grid.Column="7" Grid.ColumnSpan="3" Grid.Row="5" Tag="Bezorger" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbDatum" Grid.Column="1" Grid.Row="5" Tag="Datum" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}" IsReadOnly="True"/>
+        <TextBox x:Name="tbKlant" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="5" Tag="Klant" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}" IsReadOnly="True"/>
+        <TextBox x:Name="tbBezorger" Grid.Column="7" Grid.ColumnSpan="3" Grid.Row="5" Tag="Bezorger" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}" IsReadOnly="True"/>
 
-        <TextBox x:Name="tbPakbonNr" Grid.Column="1" Grid.Row="7" Tag="Pakbonnummer" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbPakbonNr" Grid.Column="1" Grid.Row="7" Tag="Pakbonnummer" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}" IsReadOnly="True"/>
         <ListView x:Name="lvArtikel" Grid.Column="5" Grid.ColumnSpan="5" VerticalAlignment="Stretch" Grid.Row="7" Grid.RowSpan="3" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="14">
             <ListView.View>
                 <GridView>
@@ -75,42 +75,14 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox x:Name="tbGewicht" Grid.Column="3" Grid.Row="7" Tag="Gewicht" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+        <TextBox x:Name="tbGewicht" Grid.Column="3" Grid.Row="7" Tag="Gewicht" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}" IsReadOnly="True"/>
 
-        <TextBox x:Name="tbVan" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" Tag="Huidige locatie" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
-        <TextBox x:Name="tbNaar" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="11" Tag="Gewenste locatie" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
-        <TextBox x:Name="tbOpmerking" Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="11" Tag="Opmerkingen" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
-        <TextBox x:Name="tbStatus" Grid.Column="9" Grid.Row="11" Tag="Status" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}"/>
+            <TextBox x:Name="tbVan" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" Tag="Huidige locatie" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}" IsReadOnly="True"/>
+            <TextBox x:Name="tbNaar" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="11" Tag="Gewenste locatie" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}" IsReadOnly="True"/>
+            <TextBox x:Name="tbOpmerking" Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="11" Tag="Opmerkingen" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}" IsReadOnly="True"/>
+            <TextBox x:Name="tbStatus" Grid.Column="9" Grid.Row="11" Tag="Status" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="25" FontFamily="Calibri Light" FontSize="14" Style="{StaticResource placeHolder}" IsReadOnly="True"/>
 
-        <StackPanel x:Name="spRijbewijs" Grid.Column="7" Grid.ColumnSpan="3" Grid.Row="7" Grid.RowSpan="8">
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=cbRol, Path=SelectedValue}" Value="Chauffeur">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
-
-            <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" Content="Geef aan welke rijbewijzen de chauffeur heeft:" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="A, A1 en A2" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="AM" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="B" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="BE en B+" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="C" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="CE" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="C1" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="C1E" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="D" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="DE" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="D1" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="D1E" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-            <CheckBox Content="T" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Calibri Light" FontSize="14"/>
-        </StackPanel>
-
-
+        
         <!-- Knoppen -->
         <Button x:Name="btUitprinten" Grid.Column="1" Grid.ColumnSpan="9" Grid.Row="13" VerticalAlignment="Center" Content="Pakbon uitprinten" Height="35" HorizontalAlignment="Stretch" FontFamily="Calibri Light" FontSize="16" Foreground="White">
             <Button.Style>

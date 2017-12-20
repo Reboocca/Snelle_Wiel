@@ -25,6 +25,7 @@ namespace SNWL_Planningsysteem
         string accountid;
         string accountrol;
         string table;
+        string table2;
         public DeleteAccount(string accid, string accrol)
         {
             InitializeComponent();
@@ -37,13 +38,15 @@ namespace SNWL_Planningsysteem
 
         private void getGegevens()
         {
-            if(accountrol == "Chauffeur")
+            if (accountrol == "Chauffeur")
             {
                 table = "chauffeurinfo";
+                table2 = "chauffeurs";
             }
             else
             {
                 table = "plannerinfo";
+                table2 = "planners";
             }
 
             DataTable dtAccountinfo = db.SearchParameter(table, "ID", accountid);
@@ -75,8 +78,8 @@ namespace SNWL_Planningsysteem
         {
             //verwijder functie toevoegen
             bool resultaat = db.DeleteAccount(table, accountid);
-
-            if (resultaat)
+            bool resultaat2 = db.DeleteAccount(table2, accountid);
+            if (resultaat || resultaat2)
             {
                 this.Close();
             }

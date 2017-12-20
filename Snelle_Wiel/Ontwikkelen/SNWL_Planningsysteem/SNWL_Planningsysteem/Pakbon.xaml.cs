@@ -23,13 +23,13 @@ namespace SNWL_Planningsysteem
         dbs db = new dbs();
         string pakbonnr;
 
-        public Pakbon(TreeViewItem tr, List<Homepage.allpakbon> lstpkb)
+        public Pakbon(TreeViewItem tr, List<allpakbon> lstpkb)
         {
             InitializeComponent();
 
             tbPakbonNr.Text = tr.Header.ToString();
 
-            foreach (Homepage.allpakbon pkbn in lstpkb)
+            foreach (allpakbon pkbn in lstpkb)
             {
                 if (pkbn.pkbinfo.Orderref == tr.Header.ToString())
                 {

@@ -13,11 +13,11 @@ namespace SNWL_Planningsysteem
 {
     class dbs
     {
+        List<string> lstAllPakbonExisting = new List<string>();
         #region fields
         private string conn;
         private MySqlConnection connect;
         #endregion
-
         //Connectie met de database
         public void db_connection()
         {
@@ -146,6 +146,81 @@ namespace SNWL_Planningsysteem
             }
         }
 
+        public bool AddAllExistingPakbon()
+        {
+            DataTable retValue = new DataTable();
+            db_connection();
+
+            lstAllPakbonExisting.Clear();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand("select idpakbon from planning"))
+                {
+                    cmd.Connection = connect;
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    retValue.Load(reader);
+                    connect.Close();
+
+                    foreach (DataRow row in retValue.Rows)
+                    {
+                        lstAllPakbonExisting.Add(row["idpakbon"].ToString());
+                    }
+                }
+                return true;
+            }
+            catch       //Foutafhandeling
+            {
+                return false;
+            }
+
+            finally     //Close database connection
+            {
+                connect.Close();
+            }
+        }
+
+        public bool AddPakbonToDB(allpakbon pkbn)
+        {
+            db_connection();
+
+            AddAllExistingPakbon();
+
+            try
+            {
+                if (!lstAllPakbonExisting.Contains(pkbn.pkbinfo.Orderref))
+                {
+                    string[] opleveradres = pkbn.ophladr.naam.Split(' ');
+                    MySqlCommand cmd = new MySqlCommand("insert into planning(idPakbon, idChauffeur, OphaalAdres, AfzetAdres, OphaalTijdVan, AfzetTijdTot, Datum) VALUES ('" + pkbn.pkbinfo.Orderref + "', '1048', '" + opleveradres[0] + ":" + opleveradres[1] + ":Geen postcode opgegeven:" + opleveradres[2] + "', '" + pkbn.afldres.straat + ":" + pkbn.afldres.huisnr +":" + pkbn.afldres.postcode + ":" + pkbn.afldres.plaats + "', '"+ pkbn.pkbinfo.ophaaltijdvanaf +"', '"+ pkbn.pkbinfo.aflevertijdtot + "', '" + pkbn.pkbinfo.Datum + "')");
+                    cmd.Connection = connect;
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch//Foutafhandeling
+            {
+                return false;
+            }
+            finally
+            {
+                connect.Close();
+            }
+        }
+
+        public DataTable LaadChauffeurs()
+        {
+            DataTable retValue = new DataTable();
+            db_connection();
+            using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM chauffeurinfo "))
+            {
+                cmd.Connection = connect;
+                MySqlDataReader reader = cmd.ExecuteReader();
+                retValue.Load(reader);
+                connect.Close();
+            }
+
+            //Return result
+            return retValue;
+        }
         public DataTable PakbonDbsGegevensDBS(string pakbonnr)
         {
             DataTable retValue = new DataTable();
@@ -158,7 +233,7 @@ namespace SNWL_Planningsysteem
                 connect.Close();
             }
 
-            //Return result
+            //Return result 
             return retValue;
         }
     }

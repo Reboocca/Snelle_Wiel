@@ -26,7 +26,6 @@ namespace SNWL_Planningsysteem
             InitializeComponent();
         }
 
-
         private void btLogin_Click(object sender, RoutedEventArgs e)
         {
             Login();
@@ -40,6 +39,7 @@ namespace SNWL_Planningsysteem
             }
             else
             {
+                btLogin.IsEnabled = false;
                 string webadres = "https://hobbithole.000webhostapp.com/snwl/login_planning.php?user=" + tbUsername.Text + " &pwd=" + pbPassword.Password;
                 HttpClient connect = new HttpClient();
                 HttpResponseMessage logincheck = await connect.GetAsync(webadres);
@@ -58,6 +58,7 @@ namespace SNWL_Planningsysteem
                 else if(login == "false")
                 {
                     MessageBox.Show("Het ingevoerde gebruikersnaam en/of wachtwoord is onjuist.", "Foutmelding");
+                    btLogin.IsEnabled = true;
                 }
             }
         }
