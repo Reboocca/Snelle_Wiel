@@ -18,9 +18,9 @@ namespace SNWL_VrachtwagenApp
             List<Pakbon> PakbonLijst = new List<Pakbon>();
             string Adress = Webadres + "id=" + id + "&date=" + date;
 
-            HttpClient client = new HttpClient();
-            HttpResponseMessage respons = await client.GetAsync(Adress);
-
+            HttpClient test = new HttpClient();
+            HttpResponseMessage respons = await test.GetAsync(Adress);
+            string stsd = "ajsd";
             if (respons.IsSuccessStatusCode)
             {
                 string responsecontent = await respons.Content.ReadAsStringAsync();
@@ -31,12 +31,14 @@ namespace SNWL_VrachtwagenApp
                     string[] ophaal = s.ophaaladres.Split(':');
                     string[] afzet = s.afzetadres.Split(':');
 
-                    Pakbon pakOp = new Pakbon(s.idpakbon, ophaal[0], ophaal[1], ophaal[2], ophaal[3], "Op");
-                    Pakbon pakAf = new Pakbon(s.idpakbon, afzet[0], afzet[1], afzet[2], afzet[3], "Af");
+                    Pakbon pakOp = new Pakbon(s.idpakbon, ophaal[0], ophaal[1], ophaal[3], ophaal[2], "Op", s.opmerking, s.status);
+                    Pakbon pakAf = new Pakbon(s.idpakbon, afzet[0], afzet[1], afzet[3], afzet[2], "Af", s.opmerking, s.status);
 
                     PakbonLijst.Add(pakOp);
                     PakbonLijst.Add(pakAf);
                 }
+
+                return PakbonLijst;
             }
 
             return PakbonLijst;

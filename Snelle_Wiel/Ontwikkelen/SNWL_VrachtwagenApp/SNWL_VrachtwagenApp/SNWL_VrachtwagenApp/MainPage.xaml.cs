@@ -15,11 +15,7 @@ namespace SNWL_VrachtwagenApp
         public MainPage()
         {
             InitializeComponent();
-
-            //Snel
-            //tbUsername.Text = "e.borg";
-            //tbPassword.Text = "123";
-
+            
             imgLogo.Source = ImageSource.FromResource("SNWL_VrachtwagenApp.img.logo.png");
         }
 

@@ -60,7 +60,7 @@
                     <RowDefinition Height="40*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" BackgroundColor="#8edbe0"/>
-                <Label Grid.Row="0" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="White" Text="Opmerkingen"/>
+                <Label x:Name="lbOpmerking" Grid.Row="0" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="White" Text="Opmerkingen"/>
                 <CustomEditor:BorderlessEditor x:Name="tbOpmerking" Grid.Row="1" BackgroundColor="White"/>
             </Grid>
             

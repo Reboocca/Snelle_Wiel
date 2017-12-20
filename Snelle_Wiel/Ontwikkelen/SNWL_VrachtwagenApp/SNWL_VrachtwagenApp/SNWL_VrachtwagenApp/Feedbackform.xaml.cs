@@ -28,6 +28,9 @@ namespace SNWL_VrachtwagenApp
         public string sWoonplaats { get; set; }
         public string sPostcode { get; set; }
 
+        public string sStatus { get; set; }
+        public string sOpmerkingen { get; set; }
+
         public Feedbackform(string PakbonNr, string OpAf, List<Pakbon> lstPakbonnen, Chauffeur chauff)
         {
             InitializeComponent();
@@ -56,6 +59,8 @@ namespace SNWL_VrachtwagenApp
                     sHuisnr = p.Huisnummer;
                     sWoonplaats = p.Plaats;
                     sPostcode = p.Postcode;
+                    sStatus = p.Status;
+                    sOpmerkingen = p.Opmerkingen;
                 }
             }
             if(opaf == "Op")
@@ -65,6 +70,17 @@ namespace SNWL_VrachtwagenApp
             else if(opaf == "Af")
             {
                 lbAdrestitel.Text = "Leveradres";
+
+                if (sStatus == "Ophalen mislukt")
+                {
+                    //Wanneer het ophalen mislukt is, moet het feedback van het afleveren disabled zijn
+                    DisableFeedback();
+                }
+                if(sStatus == "Niet uitgevoerd")
+                {
+                    //Wanneer nog nietvoltooid is, moet het feedback van het afleveren disabled zijn
+                    DisableFeedback();
+                }
             }
             lbStraatnummer.Text = sStraat + " " + sHuisnr;
             lbPostPlaats.Text = sPostcode + " " + sWoonplaats;
@@ -80,23 +96,21 @@ namespace SNWL_VrachtwagenApp
 
                 sLat = currentposition.Latitude.ToString();
                 sLong = currentposition.Longitude.ToString();
+
+                //Zorg dat de gebruiker alleen de route op google maps kan bekijken wanneer de lat en long berekend zijn
+                btnRoute.IsEnabled = true;
+
+                //Url map voor de image met de juiste parameters
+                sMap = "https://maps.googleapis.com/maps/api/staticmap?size=500x310&maptype=roadmap&markers=color:blue%7Clabel:S%7C" + sLat + "," + sLong + "&markers=color:green%7Clabel:E%7C " + sStraat + "+" + sHuisnr + "+" + sWoonplaats + "&path=color:0xe73c04|weight:2|" + sLat + "," + sLong + "|" + sStraat + " + " + sHuisnr + " + " + sWoonplaats + "&feature:road&key=AIzaSyCQasg9DVOSD4ENYi-i9mcdMWwSVm5qMNw";
+
+                LoadMap();
             }
             catch (Exception)
             {
                 DisplayAlert("Foutmelding", "De applicatie heeft geen toegang tot uw locatie, u wordt teruggestuurd naar de vorige pagina", "Ok");
                 Homepage home = new Homepage(chauffeur);
                 await Navigation.PushAsync(home);
-                throw;
-            }
-           
-
-            //Zorg dat de gebruiker alleen de route op google maps kan bekijken wanneer de lat en long berekend zijn
-            btnRoute.IsEnabled = true;
-
-            //Url map voor de image met de juiste parameters
-            sMap = "https://maps.googleapis.com/maps/api/staticmap?size=500x310&maptype=roadmap&markers=color:blue%7Clabel:S%7C" + sLat + "," + sLong + "&markers=color:green%7Clabel:E%7C " + sStraat + "+" + sHuisnr + "+" + sWoonplaats + "&path=color:0xe73c04|weight:2|" + sLat + "," + sLong + "|" + sStraat + " + " + sHuisnr + " + " + sWoonplaats + "&feature:road&key=AIzaSyCQasg9DVOSD4ENYi-i9mcdMWwSVm5qMNw";
-
-            LoadMap();
+            }            
         }
 
         private void LoadMap()
@@ -129,17 +143,52 @@ namespace SNWL_VrachtwagenApp
             
         }
 
+        private void DisableFeedback()
+        {
+            tbOpmerking.IsEnabled = false;
+            btnGeslaagd.IsEnabled = false;
+            btnGeslaagd.IsVisible = false;
+            btnMislukt.IsEnabled = false;
+            btnMislukt.IsVisible = false;
+
+            if (sStatus == "Ophalen mislukt")
+            {
+                lbOpmerking.Text = "Het ophalen is mislukt";
+                tbOpmerking.Text = "De volgende reden is opgegeven: " + sOpmerkingen;
+            }
+            if (sStatus == "Niet uitgevoerd")
+            {
+                lbOpmerking.Text = "Het ophalen is nog niet uitgevoerd";
+                tbOpmerking.Text = "U kunt het product pas afleveren als de ophaalopdracht geslaagd is.";
+            }
+            
+        }
+
         private async void Voltooid(bool resultaat)
         {
             //functie voor het opslaan van het resultaat
             string status;
             if (resultaat)
             {
-                status = "Geslaagd";
+                if(opaf == "Op")
+                {
+                    status = "Ophalen geslaagd";
+                }
+                else
+                {
+                    status = "Afleveren geslaagd";
+                }
             }
             else
             {
-                status = "Mislukt";
+                if (opaf == "Op")
+                {
+                    status = "Ophalen mislukt";
+                }
+                else
+                {
+                    status = "Afleveren mislukt";
+                }
             }
 
             try

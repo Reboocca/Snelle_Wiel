@@ -14,8 +14,10 @@ namespace SNWL_VrachtwagenApp
         public string Plaats { get; set; }
         public string Postcode { get; set; }
         public string OpAf { get; set; }
+        public string Opmerkingen { get; set; }
+        public string Status { get; set; }
 
-        public Pakbon(string pakbonnr, string straat, string huis, string plaats, string post, string opaf)
+        public Pakbon(string pakbonnr, string straat, string huis, string plaats, string post, string opaf, string opmerking, string status)
         {
             PakbonNr = pakbonnr;
             Straatnaam = straat;
@@ -23,6 +25,8 @@ namespace SNWL_VrachtwagenApp
             Plaats = plaats;
             Postcode = post;
             OpAf = opaf;
+            Opmerkingen = opmerking;
+            Status = status;
         }
     }
 }

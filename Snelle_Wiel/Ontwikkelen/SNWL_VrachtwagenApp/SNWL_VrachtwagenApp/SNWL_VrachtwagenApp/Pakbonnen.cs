@@ -21,5 +21,7 @@ namespace SNWL_VrachtwagenApp
             public string ophaaltijdvan { get; set; }
             public string afzettijdtot { get; set; }
             public string datum { get; set; }
-        }
+            public string opmerking { get; set; }
+            public string status { get; set; }
+    }
 }

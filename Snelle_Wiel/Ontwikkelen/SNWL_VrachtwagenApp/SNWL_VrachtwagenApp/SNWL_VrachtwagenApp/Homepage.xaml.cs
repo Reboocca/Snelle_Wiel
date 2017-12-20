@@ -39,7 +39,15 @@ namespace SNWL_VrachtwagenApp
         {
             string date = DateTime.Now.ToString("dd/MM/yyyy".Replace("/","-"));
 
-            lstPakbonnen = await GetPakbonnen.getPakbonlist(chauffeur.id, date);
+            try
+            {
+                lstPakbonnen = await GetPakbonnen.getPakbonlist(chauffeur.id, date);
+            }
+            catch (Exception)
+            {
+                DisplayAlert("Foutmelding", "De pakbonnen kunnen momenteel niet ingeladen worden, contacteer een beheerder", "Ok");
+            }
+            
 
             if(lstPakbonnen.Count == 0)
             {
